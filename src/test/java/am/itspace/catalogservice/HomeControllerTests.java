@@ -11,14 +11,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-
 public class HomeControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public  void testHomeGetGreeting() throws Exception {
+    public  void testGetGreeting() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
 
