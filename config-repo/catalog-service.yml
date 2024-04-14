@@ -1,0 +1,2 @@
+bookshop:
+  greeting: "Welcome to the bookshop from config service default"
