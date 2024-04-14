@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String getGreeting(){
-        return "Welcome to the Bookshop Catalog Service";
+        return bookshopProperties.getGreeting();
     }
 
 }
