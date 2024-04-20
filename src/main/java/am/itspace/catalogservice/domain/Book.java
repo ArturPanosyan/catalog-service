@@ -41,6 +41,7 @@ public record Book(
         @Version
         int version
 ) {
+
     public static Book of(
             String isbn, String title, String author, Double price, String publisher
     ) {
