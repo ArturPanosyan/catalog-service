@@ -3,7 +3,7 @@ package am.itspace.catalogservice.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "bookshop")
-public class BookShopProperties {
+public class BookshopProperties {
 
     private String greeting;
 

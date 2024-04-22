@@ -1,15 +1,15 @@
 package am.itspace.catalogservice;
 
-import am.itspace.catalogservice.config.BookShopProperties;
+import am.itspace.catalogservice.config.BookshopProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
 
-    private final BookShopProperties bookshopProperties;
+    private final BookshopProperties bookshopProperties;
 
-    public HomeController(BookShopProperties bookshopProperties) {
+    public HomeController(BookshopProperties bookshopProperties) {
         this.bookshopProperties = bookshopProperties;
     }
 
