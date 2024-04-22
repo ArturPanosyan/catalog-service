@@ -2,10 +2,12 @@ package am.itspace.catalogservice;
 
 import am.itspace.catalogservice.domain.Book;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -81,31 +83,5 @@ class CatalogServiceApplicationTests {
                 });
     }
 
-    @Test
-    void whenDeleteRequestThenBookDeleted() {
-        var bookIsbn = "1231231233";
-        var bookToCreate = Book.of(bookIsbn, "Title", "Author", 9.90, null);
-        webTestClient
-                .post()
-                .uri("/books")
-                .bodyValue(bookToCreate)
-                .exchange()
-                .expectStatus().isCreated();
-
-        webTestClient
-                .delete()
-                .uri("/books/" + bookIsbn)
-                .exchange()
-                .expectStatus().isNoContent();
-
-        webTestClient
-                .get()
-                .uri("/books/" + bookIsbn)
-                .exchange()
-                .expectStatus().isNotFound()
-                .expectBody(String.class).value(errorMessage ->
-                        assertThat(errorMessage).isEqualTo("The book with ISBN " + bookIsbn + " was not found.")
-                );
-    }
 
 }

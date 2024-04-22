@@ -8,7 +8,7 @@ spring:
       uri: http://localhost:8888
   datasource:
     username: user
-    password: postgres
+    password: password
     url: jdbc:postgresql://localhost:5432/bookshopdb_catalog
     hikari:
           connection-timeout: 2000
