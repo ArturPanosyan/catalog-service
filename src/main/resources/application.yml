@@ -1,6 +1,8 @@
 spring:
   application:
     name: catalog-service
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
   config:
     import: "optional:configserver:"
   cloud:
@@ -11,11 +13,12 @@ spring:
     password: password
     url: jdbc:postgresql://localhost:5432/bookshopdb_catalog
     hikari:
-          connection-timeout: 2000
-          maximum-pool-size: 5
+      connection-timeout: 2000
+      maximum-pool-size: 5
 
 server:
   port: 9001
+  shutdown: graceful
   tomcat:
     connection-timeout: 2s
     keep-alive-timeout: 15s
@@ -24,7 +27,6 @@ server:
       min-spare: 5
 bookshop:
   greeting: "Welcome to the bookshop catalog local!"
-
 management:
   endpoints:
     web:
