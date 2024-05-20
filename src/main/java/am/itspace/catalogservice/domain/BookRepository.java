@@ -7,13 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
- public interface BookRepository extends CrudRepository<Book, Long> {
-    Optional<Book> findByIsbn(String isbn);
+public interface BookRepository extends CrudRepository<Book, Long> {
+   Optional<Book> findByIsbn(String isbn);
 
-    boolean existsByIsbn(String isbn);
+   boolean existsByIsbn(String isbn);
 
-    @Modifying
-    @Transactional
-    @Query("delete from Book where isbn = :isbn")
-    void deleteByIsbn(String isbn);
+   @Modifying
+   @Transactional
+   @Query("delete from Book where isbn = :isbn")
+   void deleteByIsbn(String isbn);
 }

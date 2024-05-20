@@ -1,9 +1,6 @@
 package am.itspace.catalogservice.domain;
 
-import am.itspace.catalogservice.exception.BookAlreadyExistsException;
-import am.itspace.catalogservice.exception.BookNotFoundException;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class BookService {
@@ -46,6 +43,8 @@ public class BookService {
                             book.publisher(),
                             existingBook.createdDate(),
                             existingBook.lastModifiedDate(),
+                            existingBook.createdBy(),
+                            existingBook.lastModifiedBy(),
                             existingBook.version());
                     return bookRepository.save(bookToUpdate);
                 })
