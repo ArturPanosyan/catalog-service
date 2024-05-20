@@ -1,8 +1,7 @@
 package am.itspace.catalogservice.domain;
+
 import java.util.Optional;
 
-import am.itspace.catalogservice.exception.BookAlreadyExistsException;
-import am.itspace.catalogservice.exception.BookNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,12 +21,22 @@ class BookServiceTest {
     private BookService bookService;
 
     @Test
-     void whenBookToCreateAlreadyExistsThenThrows() {
-
+    void whenBookToCreateAlreadyExistsThenThrows() {
+        var bookIsbn = "1234561232";
+        var bookToCreate = Book.of(bookIsbn, "Title", "Author", 9.90, null);
+        when(bookRepository.existsByIsbn(bookIsbn)).thenReturn(true);
+        assertThatThrownBy(() -> bookService.addBookToCatalog(bookToCreate))
+                .isInstanceOf(BookAlreadyExistsException.class)
+                .hasMessage("A book with ISBN " + bookIsbn + " already exists.");
     }
 
     @Test
     void whenBookToReadDoesNotExistThenThrows() {
-
+        var bookIsbn = "1234561232";
+        when(bookRepository.findByIsbn(bookIsbn)).thenReturn(Optional.empty());
+        assertThatThrownBy(() -> bookService.viewBookDetails(bookIsbn))
+                .isInstanceOf(BookNotFoundException.class)
+                .hasMessage("The book with ISBN " + bookIsbn + " was not found.");
     }
+
 }
